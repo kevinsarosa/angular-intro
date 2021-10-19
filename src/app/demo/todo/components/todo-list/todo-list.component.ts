@@ -13,6 +13,7 @@ export class TodoListComponent implements OnInit {
   @Output() toggleTodo:EventEmitter<Todo> = new EventEmitter<Todo>()
 
   ngOnInit(): void {
+    
   }
 
   onCheckTodo(todo:Todo):void{

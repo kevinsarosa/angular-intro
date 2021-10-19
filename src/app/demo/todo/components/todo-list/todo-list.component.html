@@ -1,1 +1,20 @@
-<p>todo-list works!</p>
+<div class="card my-3 p-2 shadow">
+    <div class="title">
+        <h2>Todo List</h2>
+    </div>
+    <div class="body">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let todo of todos">
+                <span class="form-check py-2">
+                    <input type="checkbox" id="todo_{{todo.id}}" class="form-check-input" [checked]="todo.isDone">
+                    <label for="todo_{{todo.id}}" class="form-check-label">
+                        {{todo.name}}
+                    </label>
+                    <button class="btn btn-link btn-sm btn-warning float-end">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
