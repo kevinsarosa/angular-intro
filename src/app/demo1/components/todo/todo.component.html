@@ -1,0 +1,30 @@
+<p>{{pageTitle}}</p>
+<!-- <p>{{person}}</p>
+<p>{{greeting()}}</p>
+<p>{{person2[0].name}}</p>
+
+<ul>
+    <li *ngFor= "let item of person2">{{item.name}} {{item.age}}</li>
+</ul>
+
+
+
+<ul>
+    <li *ngFor= "let item of person2">{{item.name}} {{item.age}}
+
+        <ul>
+            <li *ngFor= "let skill of item.skill">
+                {{skill.skillname}} - {{skill.level}}
+            </li>
+        </ul>
+    </li>
+</ul> -->
+<div class="row">
+    <div class="col">
+        <app-todo-list [todos]="todos" [title]= "pageTitle" (todo)= "onCheckedTodo($event)" (viewTodo)= "onViewTodo($event)"></app-todo-list>
+    </div>
+    <div class="col">
+        <app-todo-form></app-todo-form>
+    </div>
+</div>
+

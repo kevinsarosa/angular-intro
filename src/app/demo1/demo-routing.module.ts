@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouteGuard } from '../shared/guard/route.guard';
 import { DemoComponent } from './demo.component';
-import { ShopaaComponent } from './shopaa/shopaa.component';
-import { TodoComponent } from './todo/todo.component';
+import { ShopaaComponent } from './components/shopaa/shopaa.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 const routes: Routes = [
   {

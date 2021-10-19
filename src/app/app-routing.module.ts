@@ -25,11 +25,11 @@ const routes: Routes = [
   //     import('./pages/demo.module').then((module) => module.DemoModule),
   // },
 
-  {
-    path: '',
-    loadChildren: () =>
-      import('./demo/demo.module').then((module) => module.DemoModule),
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('./demo1/demo.module').then((module) => module.DemoModule),
+  // },
   {
     path: '**',
     redirectTo: 'sample',

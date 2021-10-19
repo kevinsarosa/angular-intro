@@ -8,7 +8,7 @@ import { ResumeModule } from './resume/resume.module';
 import { SharedModule } from './shared/shared.module';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
-import { DemoComponent } from './demo/demo.component';
+import { DemoComponent } from './demo1/demo.component';
 
 @NgModule({
   declarations: [
