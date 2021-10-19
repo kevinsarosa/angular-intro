@@ -12,6 +12,8 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     const sessionTodos:string = sessionStorage.getItem('todos') as string;
+    console.log(sessionTodos);
+    
 
     if(!sessionTodos){
       const todos:Todo[] = [
@@ -37,15 +39,31 @@ export class TodoComponent implements OnInit {
   
 
   onEditTodo(todo:Todo):void{
-
+    this.todo = todo
+    console.log(this.todo)
   }
 
-  onToggleTodo(todo:Todo):void{
-
+  onToggleTodo():void{
+    sessionStorage.setItem('todos', JSON.stringify(this.todos))
+    console.log(this.todos);
   }
 
   onSaveTodo(todo:Todo):void{
-    
+    const found = this.todos?.find((e)=>e.id == todo.id)
+
+    if(!todo.id){
+      todo.id =this.todos!.length+1;
+      this.todos?.push(todo)
+      sessionStorage.setItem('todos', JSON.stringify(this.todos))
+    }
+    else if(found){
+      todo.id = this.todos!.length+1
+      found.name = todo.name
+      sessionStorage.setItem('todos', JSON.stringify(this.todos))
+    }
+    else{
+      console.log('tidak ada data')
+    }
   }
 
 

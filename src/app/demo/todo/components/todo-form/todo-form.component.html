@@ -1,1 +1,21 @@
-<p>todo-form works!</p>
+<div class="card my-3 p-2 shadow">
+    <div class="title">
+        <h2>Todo Form</h2>
+    </div>
+    <div class="body">
+        <form [formGroup]="todoForm">
+            <div class="input-group mb-3">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" 
+                    type="checkbox" 
+                    aria-label="Checkbox for following text input"
+                    >
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with checkbox"
+                formControlName = "name"
+                [value]='todo?.name'>
+            </div>
+            <button class="btn btn-outline-primary"(click)="onSubmitTodo()">ADD</button>
+        </form>
+    </div>
+</div>

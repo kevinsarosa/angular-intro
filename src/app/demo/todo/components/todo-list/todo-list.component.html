@@ -6,11 +6,19 @@
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let todo of todos">
                 <span class="form-check py-2">
-                    <input type="checkbox" id="todo_{{todo.id}}" class="form-check-input" [checked]="todo.isDone">
+                    <input type="checkbox" 
+                    id="todo_{{todo.id}}" 
+                    class="form-check-input"
+                    [checked]="todo.isDone"
+                    (click)="onCheckTodo(todo)">
                     <label for="todo_{{todo.id}}" class="form-check-label">
                         {{todo.name}}
                     </label>
-                    <button class="btn btn-link btn-sm btn-warning float-end">
+                    <button class="btn btn-danger btn-sm float-end mx-2" (click)="onDeleteTodo(todo)">
+                        <i class="bi bi-x-octagon-fill"></i>
+                    </button>
+                    <button class="btn btn-link btn-sm btn-warning float-end"
+                    (click)="onSelectTodo(todo)">
                         <i class="fas fa-edit"></i>
                     </button>
                 </span>
