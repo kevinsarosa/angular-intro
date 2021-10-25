@@ -4,18 +4,34 @@
     </div>
     <div class="body">
         <form [formGroup]="todoForm">
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 has-validation">
                 <div class="input-group-text">
-                    <input class="form-check-input mt-0" 
-                    type="checkbox" 
-                    aria-label="Checkbox for following text input"
-                    >
+                    <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox"
-                formControlName = "name"
-                [value]='todo?.name'>
+                <input type="text" class="form-control" [ngClass]="isFieldValid('name')" formControlName="name"
+                    [value]='todo?.name' placeholder="Input todo name">
+                <!-- <input type="text" class="form-control {{isFieldValid('name')}}" formControlName="name"
+                    [value]='todo?.name' placeholder="Input todo name"> -->
+                <button class="btn btn-outline-success" (click)="onSubmitTodo()"
+                    [disabled]="todoForm.invalid">ADD</button>
+                <div class="invalid-feedback" validation-message [control]="getControl('name')" label="todo name"></div>
             </div>
-            <button class="btn btn-outline-primary"(click)="onSubmitTodo()">ADD</button>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary btn-sm" (click)="addTodo()"> Add Sub Todo</button>
+            </div>
+            <div class="input-group mb-3 has-validation" *ngFor="let control of getSubTodos(); index as i">
+                <ng-container [formGroup]="control">
+                    <div class="input-group-text">
+                        <input type="checkbox" class="form-check-input mt-0" formControlName="isDone">
+                    </div>
+                    <!-- <input type="text" class="form-control{{isFieldValid('name', control) }}" formControlName="name"
+                        placeholder="Input todo name"> -->
+                    <input type="text" class="form-control" [ngClass]="isFieldValid('name')" formControlName="name"
+                        placeholder="Input todo name">
+                </ng-container>
+            </div>
+
         </form>
     </div>
 </div>

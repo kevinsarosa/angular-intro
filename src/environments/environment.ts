@@ -3,8 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
 };
+
+export const validationMessage = {
+  required: 'Field Harus Di isi',
+  minlength: 'Field %s minimal harus lebih panjang dari %s',
+  email: 'Field %s harus berupa email yang valid',
+};
+
+export const printLog = (message:string)=>{
+  return console.log(` ${message} is load`)
+}
+
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -3,6 +3,41 @@
         <app-todo-list [todos]="todos" (toggleTodo)="onToggleTodo()" (editTodo)="onEditTodo($event)"></app-todo-list>
     </div>
     <div class="col">
-        <app-todo-form [todo]="todo" (saveTodo)="onSaveTodo($event)"></app-todo-form>
+        <app-todo-form [(todo)]="todo"></app-todo-form>
     </div>
-</div>
+  <!--   <div class="row">
+        <div class="col">
+            <div class="container shadow my-3 p-2">
+                <div class="border-bottom mb-3">
+                    <h4>Directive</h4> -->
+                    <!-- <div *ngIf="todos!.length>0; else emptyTodo">
+                        <li *ngFor = "let todo of todos">{{todo.name}}</li>
+                    </div> -->
+                    <!-- <div *ngIf = "todos!.length>0; then listTodo else emptyTodo"></div>
+                    <ng-template #listTodo>
+                        <ul class="list-unstyled">
+                            <li *ngFor= "let todo of todos let i = index">
+                                {{i+1}}-
+                                {{todo.name}}
+                            </li>
+                        </ul>
+                    </ng-template>
+                    <ng-template #emptyTodo>
+                        Todo Kosong
+                    </ng-template>
+
+                    <button class="btn-primary me-2" (click)="viewMode='mode-1'">View Mode 1</button>
+                    <button class="btn-warning " (click)="viewMode='mode-2'">View mode 2</button>
+                    <div [ngSwitch] = "viewMode">
+                        <div *ngSwitchCase= "'mode-1'">Berhasil ditampilkan mode satu</div>
+                        <div *ngSwitchCase= "'mode-2'">Berhasil ditampilkan mode dua</div>
+                        <div *ngSwitchDefault> Default Mode</div>
+                    </div>
+                    <p appHighlight> INI TEXT</p>
+                    <button>tidak bergaya</button>
+                    <button appBsButton color="danger" size="lg"> button bergaya</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

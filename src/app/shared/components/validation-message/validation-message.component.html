@@ -1,0 +1,5 @@
+<!-- <span *ngIf="isFieldValid()">{{displayErrors()}}</span> -->
+
+<ng-container *ngIf= "isFieldValid()">
+    <span [innerHtml]= "displayErrors()"></span>
+</ng-container>

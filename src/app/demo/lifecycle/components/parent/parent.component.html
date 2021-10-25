@@ -1,0 +1,7 @@
+<div class="m-3 p-2">
+<button class="btn btn-outline-primary" (click)="toggleChild()">Toggle Child</button>
+<ng-container *ngIf="isChild" >
+<input type="text" class="form-control"/>
+<app-child [haloText]="haloText"></app-child>
+</ng-container>
+</div>

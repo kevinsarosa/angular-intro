@@ -8,7 +8,7 @@ import { Todo } from '../../model/interface';
 })
 export class TodoListComponent implements OnInit {
 
-  @Input() todos?:Todo[] =[]
+  @Input() todos?:Todo[]
   @Output() editTodo:EventEmitter<Todo> = new EventEmitter<Todo>()
   @Output() toggleTodo:EventEmitter<void> = new EventEmitter<void>()
 

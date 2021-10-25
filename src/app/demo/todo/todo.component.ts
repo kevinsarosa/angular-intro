@@ -7,8 +7,18 @@ import { Todo } from './model/interface';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-  todos?:Todo[]
-  todo?:Todo
+  todos?:Todo[];
+  todoValue?:Todo;
+  viewMode:string = '';
+
+  get todo():Todo{
+    return this.todoValue as Todo
+  }
+
+  set todo(todo:Todo){
+    this.todoValue = undefined;
+    this.onSaveTodo(todo);
+  }
 
   ngOnInit(): void {
     const sessionTodos:string = sessionStorage.getItem('todos') as string;
@@ -57,7 +67,6 @@ export class TodoComponent implements OnInit {
       sessionStorage.setItem('todos', JSON.stringify(this.todos))
     }
     else if(found){
-      todo.id = this.todos!.length+1
       found.name = todo.name
       sessionStorage.setItem('todos', JSON.stringify(this.todos))
     }
