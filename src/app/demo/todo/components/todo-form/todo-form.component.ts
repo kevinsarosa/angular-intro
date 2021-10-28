@@ -14,8 +14,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Todo } from '../../model/interface';
+import { TodoService } from '../../services/todo.service';
+import {map} from 'rxjs/operators'
+import { AlertMessage } from 'src/app/shared/models/alert-message-interface';
 
 @Component({
   selector: 'app-todo-form',
@@ -23,13 +27,27 @@ import { Todo } from '../../model/interface';
   styleUrls: ['./todo-form.component.scss'],
 })
 export class TodoFormComponent implements OnInit, OnChanges {
+
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.todo) {
-      this.todoForm?.setValue(this.todo);
-    }
+    // this.setFormValue()
   }
-  @Input() todo?: Todo;
-  @Output() todoChange: EventEmitter<Todo> = new EventEmitter<Todo>();
+
+  ngOnInit(): void {
+    this.activatedRoute.params.pipe(
+      map((params: Params)=>{
+        return params.id ? +params.id :null;
+      })
+    ).subscribe((id)=>{
+      const todo = this.todoService.getTodoById(id as number)
+      this.todo = todo
+      this.setFormValue()
+    })
+  }
+
+  constructor(private readonly todoService: TodoService, private readonly activatedRoute: ActivatedRoute, private readonly router:Router) {}
+  todo?: Todo;
+  message?: AlertMessage;
+  // @Output() todoChange: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   todoForm: FormGroup = new FormGroup({
     id: new FormControl(),
@@ -38,19 +56,34 @@ export class TodoFormComponent implements OnInit, OnChanges {
     subTodos: new FormArray([]),
   });
 
-  ngOnInit(): void {}
+ 
+  
 
   onSubmitTodo(): void {
-    this.todoChange.emit(this.todoForm.value);
+    const todo: Todo = this.todoForm.value;
+    // this.todoChange.emit(this.todoForm.value);
+    
+    this.todoService.saveTodo(todo);
+    this.message = {
+      status:'success',
+      text: `Success adding ${todo.name}`
+    }
     this.todoForm.reset();
-    this.todoForm.get('isDone')?.setValue(false);
+    setTimeout(()=>{
+      this.message = undefined
+    },2000)
+    this.router.navigateByUrl('/demo/todos')
+    // this.todoForm.get('isDone')?.setValue(false);
   }
 
   isValid(): boolean {
     return !this.todoForm.get('name')?.value;
   }
 
-  isFieldValid(fieldName: string, parent?: AbstractControl):{[key: string]:boolean} {
+  isFieldValid(
+    fieldName: string,
+    parent?: AbstractControl
+  ): { [key: string]: boolean } {
     let control: AbstractControl = this.todoForm.get(
       fieldName
     ) as AbstractControl;
@@ -133,5 +166,10 @@ export class TodoFormComponent implements OnInit, OnChanges {
         isDone: new FormControl(false),
       })
     );
+  }
+  setFormValue(){
+    if (this.todo) {
+      this.todoForm?.setValue(this.todo);
+    }
   }
 }

@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoComponent } from './todo.component';
+import { AuthComponent } from './auth.component';
 
 const routes: Routes = [
-  { path: '', component: TodoComponent },
-  { path: ':id', component: TodoComponent },
+  { path: 'login', pathMatch: 'full', redirectTo: 'login' },
+  {
+    path: ':action',
+    component: AuthComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TodoRoutingModule {}
+export class AuthRoutingModule {}

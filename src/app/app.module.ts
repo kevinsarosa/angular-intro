@@ -9,6 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DemoComponent } from './demo1/demo.component';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
+import { AuthModule } from './auth/auth.module';
+import { RequestInterceptor } from './shared/interceptors/request.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,12 @@ import { DemoComponent } from './demo1/demo.component';
     SampleModule,
     ResumeModule,
     SharedModule,
+    AuthModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass:RequestInterceptor, multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

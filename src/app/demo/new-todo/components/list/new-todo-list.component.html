@@ -7,6 +7,7 @@
     </ng-container>
     <div class="body">
         <ul class="list-group">
+            <ng-container *ngIf = "!loading; else isLoading">
             <li class="list-group-item" *ngFor="let todo of todos">
                 <span class="form-check py-2">
                     <input type="checkbox" 
@@ -17,15 +18,25 @@
                     <label for="todo_{{todo.id}}" class="form-check-label">
                         {{todo.name}}
                     </label>
-                    <button class="btn btn-danger btn-sm float-end mx-2" (click)="onDeleteTodo(todo)">
+                    <img *ngIf ="todo.photo" src="/api/{{todo.photo}}" class="img-fluid" style="max-width: 240px;"/>
+                    <button class="btn btn-danger btn-sm float-end mx-2" (click)="onDeleteTodo(todo.id)">
                         <i class="bi bi-x-octagon-fill"></i>
                     </button>
-                    <button class="btn btn-sm btn-warning float-end" routerLink = "/demo/todos/{{todo.id}}"
+                    <a class="btn btn-sm btn-warning float-end"  [routerLink] = "['/','demo', 'new-todos', todo.id]"
                     >
                         <i class="fas fa-edit"></i>
-                    </button>
+                    </a>
                 </span>
             </li>
+        </ng-container>
+        <ng-template #isLoading>
+            <li class="list-group-item">
+                <span class="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </span>
+            </li>
+        </ng-template>
         </ul>
     </div>
 </div>

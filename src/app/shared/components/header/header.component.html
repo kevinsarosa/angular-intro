@@ -17,6 +17,12 @@
                 <li class="nav-link active">
                     <a class="text-light text-decoration-none"   routerLink="about">About</a>
                 </li>
+                <li class="nav-link active" *ngIf= "!isLoggedIn()">
+                    <a class="text-light text-decoration-none"   routerLink="auth/login">Login</a>
+                </li>
+                <li class="nav-link active" *ngIf= "isLoggedIn()">
+                    <a class="text-light text-decoration-none"   routerLink="auth/logout">Logout</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,10 +32,11 @@
                         <li><a class="dropdown-item" routerLink="demo/shopaa">Shopaa</a></li>
                         <li><a class="dropdown-item" routerLink="demo/todos">Todo</a></li>
                         <li><a class="dropdown-item" routerLink="demo/lifecycle">LifeCycle</a></li>
+                        <li><a class="dropdown-item" routerLink="demo/new-todos">New Todo</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <!--   <li><a class="dropdown-item" href="#">Something else here</a></li> -->
                     </ul>
                 </li>
                 <!-- <li class="nav-item">

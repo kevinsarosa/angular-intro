@@ -1,0 +1,40 @@
+<div class="card my-3 p-2 shadow">
+    <div class="title">
+        <h2>Todo Form</h2>
+    </div>
+    <ng-container *ngIf="message">
+        <div class="alert {{message.status ? 'alert-' +  message.status: ''}} fade show" role="alert">{{message.text}}
+        </div>
+    </ng-container>
+    <div class="body">
+        <ng-container *ngIf="!loading; else isLoading">
+            <form [formGroup]="todoForm">
+                <div class="input-group mb-3 has-validation">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox"
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <input type="text" class="form-control" [ngClass]="isFieldValid('name')" formControlName="name"
+                        placeholder="Input todo name">
+                    <!-- <input type="text" class="form-control {{isFieldValid('name')}}" formControlName="name"
+                    [value]='todo?.name' placeholder="Input todo name"> -->
+                    <button class="btn btn-outline-success" (click)="onSubmitTodo()"
+                        [disabled]="todoForm.invalid">ADD</button>
+                    <div class="invalid-feedback" validation-message [control]="getControl('name')" label="todo name">
+                    </div>
+                </div>
+                <input class="form-control" formControlName="photo" (change)="handleFileUpload($event)" type="file"
+                    id="formFile">
+            </form>
+        </ng-container>
+
+        <ng-template #isLoading>
+            <li class="list-group-item">
+                <span class="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </span>
+            </li>
+        </ng-template>
+    </div>
+</div>

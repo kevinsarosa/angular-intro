@@ -7,7 +7,7 @@ export const environment = {
 };
 
 export const validationMessage = {
-  required: 'Field Harus Di isi',
+  required: 'Field harus di isi',
   minlength: 'Field %s minimal harus lebih panjang dari %s',
   email: 'Field %s harus berupa email yang valid',
 };
